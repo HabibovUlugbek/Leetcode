@@ -5,13 +5,12 @@ var searchInsert = function(nums, target) {
     return nums.indexOf(target);
 };
 
-console.log(searchInsert([1,3,5,6],5)
 
-// var searchInsert = function(nums, target) {
+var searchInser = function(nums, target) {
     
-//     for(var i=0 ; i< nums.length ; i++){
-//         if(nums[i] >= target ) return i
-//     } 
+    for(var i=0 ; i< nums.length ; i++){
+        if(nums[i] >= target ) return i
+    } 
     
-//     return nums.length
-// };
+    return nums.length
+};
