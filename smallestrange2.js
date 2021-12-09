@@ -17,7 +17,7 @@ var smallestRangeII = function(nums, k) {
         let max = Math.max( highestarr-k, nums[i]+k )
 
         res = Math.min(max-min, res)            
-    
+
     }
 
     return res
