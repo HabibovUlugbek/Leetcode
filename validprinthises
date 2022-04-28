@@ -1,0 +1,11 @@
+function isValid(s: string): boolean {
+    if(s.length %2 === 1) return false
+    let str ="";
+while(str !== s) { 
+      str = s
+        s = s.replace("()", "");
+        s = s.replace("{}", "");
+        s = s.replace("[]", "");
+      }
+return s.length === 0 ? true : false;
+};
