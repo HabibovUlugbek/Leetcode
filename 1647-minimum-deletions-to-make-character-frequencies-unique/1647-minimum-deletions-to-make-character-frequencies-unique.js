@@ -4,10 +4,9 @@
  */
 var minDeletions = function(s) {
     let hash  = {}
-    s = s.split("");
     for(let i=0; i<s.length; i++){
-        if(hash[s[i]]) hash[s[i]]++
-        else hash[s[i]] =1;
+        if(hash[s.charCodeAt(i) - 97]) hash[s.charCodeAt(i) - 97]++
+        else hash[s.charCodeAt(i) - 97] =1;
     }
     let values = Object.values(hash);
     values = values.sort((a,b) => b-a);
