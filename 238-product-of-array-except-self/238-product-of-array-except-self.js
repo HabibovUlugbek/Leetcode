@@ -10,11 +10,9 @@ var productExceptSelf = function(nums) {
         output[i] = rightMult;
         rightMult *= nums[i];
     }
-    console.log(output)
     for (var j=0; j < nums.length; j++) {
         output[j] *= leftMult;
         leftMult *= nums[j];
     }
-    console.log(output)
     return output;
 };
