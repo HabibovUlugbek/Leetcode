@@ -1,42 +1,39 @@
+var TimeMap = function () {
+  this.map = new Map()
+}
 
-var TimeMap = function() {
-    let database = {}
-    this.database = database;
-};
-
-/** 
- * @param {string} key 
- * @param {string} value 
+/**
+ * @param {string} key
+ * @param {string} value
  * @param {number} timestamp
  * @return {void}
  */
-TimeMap.prototype.set = function(key, value, timestamp) {
-    if(this.database[key])  this.database[key].push({value:value,timestamp:timestamp})
-    else this.database[key] = [{value:value,timestamp:timestamp}]
-};
+TimeMap.prototype.set = function (key, value, timestamp) {
+  if (this.map.has(key)) this.map.get(key).push({ value, timestamp })
+  else this.map.set(key, [{ value, timestamp }])
+}
 
-/** 
- * @param {string} key 
+/**
+ * @param {string} key
  * @param {number} timestamp
  * @return {string}
  */
-TimeMap.prototype.get = function(key, timestamp) {
-    let result = "";
-    let data = this.database[key];
-    if(!data ) return result;
-    let maxtimestamp = -Infinity;
-    for(let i=0; i<data.length ;i++){
-        if(data[i].timestamp<=timestamp){
-            if(maxtimestamp<data[i].timestamp) {
-                result = data[i].value;
-                maxtimestamp = data[i].timestamp;
-            }
-        }
+TimeMap.prototype.get = function (key, timestamp) {
+  if (this.map.has(key)) {
+    let arr = this.map.get(key),
+      start = 0,
+      end = arr.length - 1
+    while (start < end) {
+      let mid = Math.ceil((start + end) / 2)
+      if (arr[mid].timestamp > timestamp) end = mid - 1
+      else start = mid
     }
-    return result;
-};
+    if (arr[start].timestamp <= timestamp) return arr[start].value
+  }
+  return ''
+}
 
-/** 
+/**
  * Your TimeMap object will be instantiated and called as such:
  * var obj = new TimeMap()
  * obj.set(key,value,timestamp)
