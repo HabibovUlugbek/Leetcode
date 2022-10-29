@@ -3,10 +3,16 @@
  * @return {number}
  */
 var countDistinctIntegers = function(nums) {
-    let arr = [...nums];
+    let hash = {};
     for(let i=0 ; i< nums.length; i++){
-        let num = parseInt(nums[i].toString().split("").reverse().join(""))
-        arr.push(num);
+        if(!hash[nums[i]]) {
+            hash[nums[i]] = true;
+        }
+        let num = parseInt(nums[i].toString().split("").reverse().join(""));
+        if(!hash[num]) {
+            hash[num] = true;
+        }
     }
-    return  Array.from(new Set(arr)).length
+    
+    return  Object.keys(hash).length
 };
