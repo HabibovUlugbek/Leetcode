@@ -2,17 +2,17 @@
  * @param {number[]} nums
  * @return {number}
  */
-var countDistinctIntegers = function(nums) {
-    let hash = {};
-    for(let i=0 ; i< nums.length; i++){
-        if(!hash[nums[i]]) {
-            hash[nums[i]] = true;
-        }
-        let num = parseInt(nums[i].toString().split("").reverse().join(""));
-        if(!hash[num]) {
-            hash[num] = true;
-        }
+const countDistinctIntegers = nums => {
+  const unique = new Set();
+  for (const n of nums) {
+    unique.add(n);
+    let reversed = 0;
+    for (let m = n; m > 0; m = Math.floor(m / 10)) {
+      const lastDigit = m % 10;
+      reversed *= 10;
+      reversed += lastDigit;
     }
-    
-    return  Object.keys(hash).length
+    unique.add(reversed);
+  }
+  return unique.size;
 };
