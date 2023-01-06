@@ -3,13 +3,16 @@
  * @return {number}
  */
 var minDeletionSize = function(strs) {
-    let count = 0;
-    for(let i=0 ; i<strs[0].length ; i++){
-        let str = "";
-        for(let j = 0 ; j<strs.length ; j++){
-            str+=strs[j].charAt(i);
+     let count = 0;
+
+    for (let i = 0; i < strs[0].length; i++) {
+        for (let j = 0; j < strs.length - 1; j++) {
+            if (strs[j][i] > strs[j + 1][i]) {
+                count++;
+                break;
+            }
         }
-        count += str !== str.split("").sort().join("") ? 1 : 0
     }
+
     return count;
 };
