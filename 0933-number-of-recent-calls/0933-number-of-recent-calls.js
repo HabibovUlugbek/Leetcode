@@ -1,6 +1,6 @@
 
 var RecentCounter = function() {
-    this.request = [];
+    this.calls = [];
 };
 
 /** 
@@ -8,12 +8,13 @@ var RecentCounter = function() {
  * @return {number}
  */
 RecentCounter.prototype.ping = function(t) {
-    let count = 0;
-    this.request.push(t)
-    for(let i=0; i<this.request.length; i++){
-        if(this.request[i]>=t-3000 & this.request[i]<=t) count++
+    this.calls.push(t);
+
+    while (this.calls[0] < t - 3000) {
+        this.calls.shift();
     }
-    return count 
+
+    return this.calls.length;
 };
 
 /** 
