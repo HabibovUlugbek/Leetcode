@@ -3,11 +3,17 @@
  * @param {number} target
  * @return {boolean}
  */
-var searchMatrix = function(matrix, target) {
-    if(target < matrix[0][0] || target > matrix[matrix.length-1][matrix[0].length-1]) return false
-    for(let i=0 ;i<matrix.length; i++){
-        if(target<matrix[i][0] || target>matrix[i][matrix[i].length - 1]) continue;
-        else return matrix[i].includes(target);
-    }
-    return false
-};
+function searchMatrix(matrix, target) {
+  if (!matrix.length || !matrix[0].length) return false;
+
+  let row = 0;
+  let col = matrix[0].length - 1;
+
+  while (col >= 0 && row <= matrix.length - 1) {
+    if (matrix[row][col] === target) return true;
+    else if (matrix[row][col] > target) col--;
+    else if (matrix[row][col] < target) row++;
+  }
+
+  return false;
+}
