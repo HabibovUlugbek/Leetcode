@@ -3,21 +3,15 @@
  * @return {number[]}
  */
 var leftRigthDifference = function(nums) {
-    let left = new Array(nums.length).fill(0);
-    for(let i=1 ;i<nums.length; i++){
-        left[i] = left[i-1]+nums[i-1];
-    }
-    
-    let right = new Array(nums.length).fill(0);
-    for(let i=nums.length-1 ;i>=0; i--){
-        if(i === nums.length -1) {
-            right[i]=0
-            continue;
-        }
-        right[i] = right[i+1]+nums[i+1];
-    }
-    let result =new Array(nums.length).fill(0)
+    let len = nums.length
+    let left = new Array(len).fill(0);
+    let right = new Array(len).fill(0);
     for(let i=0 ;i<nums.length; i++){
+        if(i-1 >= 0)  left[i] = left[i-1]+nums[i-1];
+        if(i !== 0) right[len-1-i] = right[len-i]+nums[len-i];
+    }    
+    let result =new Array(len).fill(0)
+    for(let i=0 ;i<len; i++){
        result[i] = Math.abs(right[i]-left[i])
     }
     return result;
