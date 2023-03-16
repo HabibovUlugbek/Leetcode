@@ -3,17 +3,12 @@
  * @return {number}
  */
 var tribonacci = function(n) {
-    var fib = 0;
-    var fib0=0
-    var fib1=1 
-    var fib2=1;
-    if(n===0) return 0 ;
-        if(n===2 || n ===1) return 1;
-    for(var i=2;i<n; i++){
-      fib = fib1 +fib2+fib0;
-        fib0=fib1;
-        fib1=fib2;
-        fib2=fib
+    let dp = [];
+    dp[0] = 0;
+    dp[1] = 1;
+    dp[2] = 1;
+    for(let i=3; i<=n; i++){
+        dp[i] = dp[i-1]+dp[i-2]+dp[i-3]
     }
-    return fib
+    return dp[n]
 };
