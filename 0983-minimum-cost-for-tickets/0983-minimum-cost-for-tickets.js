@@ -5,7 +5,7 @@
  */
 var mincostTickets = function(days, costs) {
     let last = days[days.length -1]
-    let dp =new Array(last+1).fill(0)
+    let dp =[0]
     let week = costs[1]
     let month = costs[2];
     let day = costs[0]
