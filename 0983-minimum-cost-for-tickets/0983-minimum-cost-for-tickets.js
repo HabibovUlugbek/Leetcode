@@ -10,16 +10,11 @@ var mincostTickets = function(days, costs) {
     let month = costs[2];
     let day = costs[0]
     for(let i=1;i<=last;i++){
-        if(days.includes(i)){
-            if(i>=7) week=dp[i-7]+costs[1]
-            if(i>=30) month = dp[i-30]+costs[2]
-            day = dp[i-1]+costs[0]
-            dp[i] = Math.min(day,week, month)
-        } else {
-            if(i>=7) week=dp[i-7]+costs[1]
-            if(i>=30) month = dp[i-30]+costs[2]
-            dp[i] = Math.min(dp[i-1],week, month)
-        }
+        if(i>=7) week=dp[i-7]+costs[1]
+        if(i>=30) month = dp[i-30]+costs[2]
+        if(days.includes(i)) day = dp[i-1]+costs[0]
+        else day = dp[i-1]
+        dp[i] = Math.min(day,week, month)
     }
     return  dp[last]
 };
