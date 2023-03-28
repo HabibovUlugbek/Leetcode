@@ -8,7 +8,7 @@ var mincostTickets = function(days, costs) {
     let dp =new Array(last+1).fill(0)
     let week = costs[1]
     let month = costs[2];
-    let day = 0
+    let day = costs[0]
     for(let i=1;i<=last;i++){
         if(days.includes(i)){
             if(i>=7) week=dp[i-7]+costs[1]
@@ -21,10 +21,5 @@ var mincostTickets = function(days, costs) {
             dp[i] = Math.min(dp[i-1],week, month)
         }
     }
-    if(last<7) week = costs[1]
-    else week = dp[last-7]+costs[1] 
-    if(last<30) month = costs[2]
-    else month = dp[last-30]+costs[2] 
-    day = dp[last]
-    return Math.min(day, week, month)
+    return  dp[last]
 };
