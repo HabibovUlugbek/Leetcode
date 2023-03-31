@@ -9,7 +9,6 @@ var findLucky = function(arr) {
         if(hash[arr[i]]) hash[arr[i]]++
         else hash[arr[i]] = 1
     }
-    console.log(hash)
     
     for(const [key,value] of Object.entries(hash)){
         if(key == value)num = Math.max(num, key);
