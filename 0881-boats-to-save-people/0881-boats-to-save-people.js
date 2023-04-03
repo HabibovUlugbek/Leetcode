@@ -1,22 +1,17 @@
-/**
- * @param {number[]} people
- * @param {number} limit
- * @return {number}
- */
-var numRescueBoats = function(people, limit) {
-    let count = 0;
-    people.sort((a,b) => b-a);
-   while(people.length>0){
-        if(people[0]<=limit ){
-            if(people[0]+people[people.length-1]<=limit){
-                count++;
-               people.shift()
-               people.pop()
-            }else {
-                count++;
-                people.shift()
-            }
-        }
+const numRescueBoats = (people, limit) => {
+  let answ = 0;
+  let left = 0;
+  let right = people.length - 1;
+  people.sort((a, b) => a - b);
+
+  while (left <= right) {
+    answ++;
+    if (people[left] + people[right] <= limit) {
+      left++;
     }
-    return count
+
+    right--;
+  }
+
+  return answ;
 };
