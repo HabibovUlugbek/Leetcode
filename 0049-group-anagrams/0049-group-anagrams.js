@@ -10,6 +10,6 @@ var groupAnagrams = function(strs) {
         else hash[decode] = [str]
     })
     
-    const values = Object.values(hash)
-    return values
+    return Object.values(hash)
+     
 };
