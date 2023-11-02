@@ -11,21 +11,31 @@
  * @return {number}
  */
 var averageOfSubtree = function(root) {
-    let count = 0;
-    function dfs(node){
-        if(node == null) {
-            return [0,0]
-        } 
-        let left = dfs(node.left);
-        let right = dfs(node.right);
-        let [lsum,lnum]=left
-        let [rsum,rnum] = right;
-        let sum = lsum+rsum+ node.val;
-        let num = lnum + rnum+1;
-        let avg = Math.floor(sum/num);
-        if(avg == node.val) count++;
-        return [sum,num]
-    }
-    dfs(root);
+    
+    const [sum,count] = dfs(root, 0)    
+    
     return count;
 };
+
+const dfs = (root, count) => {
+    if(!root) return null;
+    const left = dfs(root.left,0);
+    const right = dfs(root.right,0)
+    let sum = root.val;
+    let n = 1
+    if(left){
+        sum +=left[0]
+        n+=left[2];
+        count += left[1]  
+    }
+    if(right){
+        sum+=right[0]
+        n+=right[2];
+        count += right[1]
+    }
+    if(Math.floor(sum/n) === root.val) {
+        count++
+    }
+    return [sum,count, n]
+    
+} 
