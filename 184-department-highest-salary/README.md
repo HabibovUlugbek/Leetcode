@@ -1,6 +1,7 @@
-<h2><a href="https://leetcode.com/problems/department-highest-salary/">184. Department Highest Salary</a></h2><h3>Medium</h3><hr><div class="sql-schema-wrapper__3VBi"><a class="sql-schema-link__3cEg">SQL Schema<svg viewBox="0 0 24 24" width="1em" height="1em" class="icon__1Md2"><path fill-rule="evenodd" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></a></div><div><p>Table: <code>Employee</code></p>
+<h2><a href="https://leetcode.com/problems/department-highest-salary">Department Highest Salary</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>Table: <code>Employee</code></p>
 
-<pre>+--------------+---------+
+<pre>
++--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
 | id           | int     |
@@ -8,8 +9,8 @@
 | salary       | int     |
 | departmentId | int     |
 +--------------+---------+
-id is the primary key column for this table.
-departmentId is a foreign key of the ID from the <code>Department </code>table.
+id is the primary key (column with unique values) for this table.
+departmentId is a foreign key (reference columns) of the ID from the <code>Department </code>table.
 Each row of this table indicates the ID, name, and salary of an employee. It also contains the ID of their department.
 </pre>
 
@@ -17,28 +18,30 @@ Each row of this table indicates the ID, name, and salary of an employee. It als
 
 <p>Table: <code>Department</code></p>
 
-<pre>+-------------+---------+
+<pre>
++-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | id          | int     |
 | name        | varchar |
 +-------------+---------+
-id is the primary key column for this table.
+id is the primary key (column with unique values) for this table. It is guaranteed that department name is not <code>NULL.</code>
 Each row of this table indicates the ID of a department and its name.
 </pre>
 
 <p>&nbsp;</p>
 
-<p>Write an SQL query to find employees who have the highest salary in each of the departments.</p>
+<p>Write a solution to find employees who have the highest salary in each of the departments.</p>
 
 <p>Return the result table in <strong>any order</strong>.</p>
 
-<p>The query result format is in the following example.</p>
+<p>The result format is in the following example.</p>
 
 <p>&nbsp;</p>
-<p><strong>Example 1:</strong></p>
+<p><strong class="example">Example 1:</strong></p>
 
-<pre><strong>Input:</strong> 
+<pre>
+<strong>Input:</strong> 
 Employee table:
 +----+-------+--------+--------------+
 | id | name  | salary | departmentId |
@@ -66,4 +69,3 @@ Department table:
 +------------+----------+--------+
 <strong>Explanation:</strong> Max and Jim both have the highest salary in the IT department and Henry has the highest salary in the Sales department.
 </pre>
-</div>
